@@ -43,17 +43,25 @@ public class AdminPanel extends javax.swing.JFrame {
         
         // Sort and add item to the admin data table
         // addDataToTableAvail();
-        showAdminTable();
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable_admin_data.getModel());
-        jTable_admin_data.setRowSorter(sorter);
-        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
-
-        int columnIndexToSort = 0;
-        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-
-        sorter.setSortKeys(sortKeys);
-        sorter.sort();
         jTable_admin_data.setDefaultEditor(Object.class, null);
+        jTable_admin_data.setAutoCreateRowSorter(true);
+        showAdminTable();
+
+//        *******************************************************************************
+//        This commented row sorter is making all the rows to null after execution
+//        
+//        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel)jTable_admin_data.getModel());
+//        jTable_admin_data.setRowSorter(sorter);
+//        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
+//
+//        int columnIndexToSort = 0;
+//        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+//
+//        sorter.setSortKeys(sortKeys);
+//        sorter.sort();
+//        
+//    ***********************************************************************************
+//        showAdminTable();
     }
 
     
@@ -71,73 +79,89 @@ public class AdminPanel extends javax.swing.JFrame {
 //        }
 //    }
     
-    class Product {
-        private String cat, item, price, disc;
-        Product (String cat, String item, String price, String disc) {
-            this.cat = cat;
-            this.item = item;
-            this.price = price;
-            this.disc = disc;
-        }
-        public String getCat() {
-            return cat;
-        }
-        public void setCat(String cat) {
-            this.cat = cat;
-        }
-        public String getItem() {
-            return item;
-        }
-        public void setItem(String item) {
-            this.item = item;
-        }
-        public String getPrice() {
-            return price;
-        }
-        public void setPrice(String price) {
-            this.price = price;
-        }
-        public String getDisc() {
-            return disc;
-        }
-        public void setDisc(String disc) {
-            this.disc = disc;
-        }
-    }
+//    class Product {
+//        private String cat, item, price, disc;
+//        Product (String cat, String item, String price, String disc) {
+//            this.cat = cat;
+//            this.item = item;
+//            this.price = price;
+//            this.disc = disc;
+//        }
+//        public String getCat() {
+//            return cat;
+//        }
+//        public void setCat(String cat) {
+//            this.cat = cat;
+//        }
+//        public String getItem() {
+//            return item;
+//        }
+//        public void setItem(String item) {
+//            this.item = item;
+//        }
+//        public String getPrice() {
+//            return price;
+//        }
+//        public void setPrice(String price) {
+//            this.price = price;
+//        }
+//        public String getDisc() {
+//            return disc;
+//        }
+//        public void setDisc(String disc) {
+//            this.disc = disc;
+//        }
+//    }
+//    
+//    private ArrayList<Product> getData() {
+//        ArrayList<Product> p = new ArrayList<>();
+//        String query = "SELECT `category` AS 'Category', `item_menu` AS 'Items', `price` AS 'Price', `discount` AS 'Discount' FROM `admin_data`";
+//        
+//        try {
+//            p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
+//            rs = p_st.executeQuery();
+//            
+//            Product newP;
+//            while (rs.next()) {
+//                newP = new Product(rs.getString("Category"), rs.getString("Items"), rs.getString("Price"), rs.getString("Discount"));
+//                p.add(newP);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return p;
+//    }
+//    
+//    private void showAdminTable() {
+//        
+//        ArrayList<Product> newP = getData();
+//        DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+//        Object[] row = new Object[4];
+//        for (int i = 0; i < newP.size(); i++) {
+//            row[0] = newP.get(i).getCat();
+//            row[1] = newP.get(i).getItem();
+//            row[2] = newP.get(i).getPrice();
+//            row[3] = newP.get(i).getDisc();
+//            model.addRow(row);
+//        }
+//        jTable_admin_data.setModel(model);
+//    }
     
-    private ArrayList<Product> getData() {
-        ArrayList<Product> p = new ArrayList<>();
-        String query = "SELECT `category` AS 'Category', `item_menu` AS 'Items', `price` AS 'Price', `discount` AS 'Discount' FROM `admin_data`";
-        
+    public void showAdminTable() {
+        String query = "SELECT `category` AS 'Category', `item_menu` AS 'Items', `price` AS 'Price', `discount` AS 'Discou' FROM `admin_data`";
         try {
             p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
             rs = p_st.executeQuery();
-            
-            Product newP;
-            while (rs.next()) {
-                newP = new Product(rs.getString("Category"), rs.getString("Items"), rs.getString("Price"), rs.getString("Discount"));
-                p.add(newP);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+            jTable_admin_data.setModel(DbUtils.resultSetToTableModel(rs));
+            p_st.close();
+        } catch(SQLException e) {
+            Logger.getLogger(e.toString());
         }
-        return p;
     }
     
-    private void showAdminTable() {
-        
-        ArrayList<Product> newP = getData();
-        DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
-        Object[] row = new Object[4];
-        for (int i = 0; i < newP.size(); i++) {
-            row[0] = newP.get(i).getCat();
-            row[1] = newP.get(i).getItem();
-            row[2] = newP.get(i).getPrice();
-            row[3] = newP.get(i).getDisc();
-            model.addRow(row);
-        }
-        jTable_admin_data.setModel(model);
-    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,6 +220,11 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_icn.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(0, 204, 204))));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2);
         jLabel2.setBounds(760, 110, 30, 30);
 
@@ -498,33 +527,30 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void jTextField_qsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_qsearchKeyReleased
 
-//        String query = "SELECT `category` AS Category, `item_menu` AS Items, `price` AS Price, `discount` AS Discount FROM `admin_data` WHERE `item_menu` LIKE '%" +
-//        jTextField_qsearch.getText() + "%'";
-//        
-//        try {
-//            p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
-//            rs = p_st.executeQuery();
-//            System.out.println(query);
-//            jTable_admin_data.setModel(DbUtils.resultSetToTableModel(rs));
-//          
-//        } catch (SQLException ex) {
-//            Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            Logger.getLogger(e.toString());
-//        }
-//            System.out.println(jTextField_qsearch.getText());
+        String query = "SELECT `category` AS 'Category', `item_menu` AS 'Items', `price` AS 'Price', `discount` AS 'Discount' FROM `admin_data` WHERE `item_menu` LIKE '%" +
+        jTextField_qsearch.getText() + "%'";
+        try {
+            p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
+            rs = p_st.executeQuery();
+            jTable_admin_data.setModel(DbUtils.resultSetToTableModel(rs));            
+        } catch (SQLException | ArrayIndexOutOfBoundsException ex) {
+            Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+//        String search = jTextField_qsearch.getText().toLowerCase();
+//        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(model);
+//        jTable_admin_data.setRowSorter(tr);
+//        tr.setRowFilter(RowFilter.regexFilter(search + "*"));
+        
 
 
-        DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
-        String search = jTextField_qsearch.getText().toLowerCase();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(model);
-        jTable_admin_data.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
-
-
-
-       
-
+//        DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+//        String search = jTextField_qsearch.getText().toLowerCase();
+//        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(model);
+//        jTable_admin_data.setRowSorter(tr);
+//        tr.setRowFilter(RowFilter.regexFilter(search + "*"));
+        
+        
     }//GEN-LAST:event_jTextField_qsearchKeyReleased
 
     private void jTextField_qsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_qsearchActionPerformed
@@ -596,8 +622,8 @@ public class AdminPanel extends javax.swing.JFrame {
             jTextField_disc.setText("");
             
             // Refreshing the Admin Table after modification
-            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
-            model.setRowCount(0);
+//            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+//            model.setRowCount(0);
             showAdminTable();
             
         } catch (SQLException ex) {
@@ -613,8 +639,29 @@ public class AdminPanel extends javax.swing.JFrame {
         String query = "INSERT INTO `admin_data`(`category`, `item_menu`, `price`, `discount`) VALUES ('" + jTextField_cat.getText() + "', '" + jTextField_item.getText() + "', '" + jTextField_price.getText() + "', '" + jTextField_disc.getText() + "')";
         
         try {
-            p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
-            int i = p_st.executeUpdate();
+            PreparedStatement p_st_ins;
+            p_st_ins = DBConnect.DBConnect.getConnection().prepareStatement(query);
+            if (jTextField_cat.getText().matches(".*[0-9].*")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid category.");
+                return;
+        }
+            if (jTextField_cat.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid category.");
+                return;
+            }
+            if (jTextField_item.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid item.");
+                return;
+            }
+            if (jTextField_price.getText().matches(".*[a-zA-Z].*")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid price.");
+                return;
+            }
+            if (jTextField_disc.getText().matches(".*[a-zA-Z].*")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid discount.");
+                return;
+            }
+            int i = p_st_ins.executeUpdate();
             if (i == 1) {
                 JOptionPane.showMessageDialog(null, "Data Entered Successfully.");
             }
@@ -625,13 +672,13 @@ public class AdminPanel extends javax.swing.JFrame {
             jTextField_disc.setText("");
             
             // Refreshing the Admin Table after modification
-            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
-            model.setRowCount(0);
+//            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+//            model.setRowCount(0);
             showAdminTable();
             
         } catch (SQLException ex) {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Data Error!", "Error!", 1);
+            JOptionPane.showMessageDialog(null, "Check, either price and discount are empty or not valid!", "Data Error!", 1);
         }
     }//GEN-LAST:event_jLabel_insertMouseClicked
 
@@ -650,8 +697,8 @@ public class AdminPanel extends javax.swing.JFrame {
             jTextField_disc.setText("");
             
             // Refreshing the Admin Table after modification
-            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
-            model.setRowCount(0);
+//            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+//            model.setRowCount(0);
             showAdminTable();
          } catch (SQLException ex) {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -789,6 +836,10 @@ public class AdminPanel extends javax.swing.JFrame {
     private void jLabel_deleteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_deleteMouseReleased
         jLabel_delete.setBackground(new Color(255,102,0));
     }//GEN-LAST:event_jLabel_deleteMouseReleased
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        String query = "";
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
