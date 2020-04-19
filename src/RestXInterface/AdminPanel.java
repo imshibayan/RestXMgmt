@@ -602,15 +602,39 @@ public class AdminPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_clearMouseClicked
 
     private void jLabel_updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseClicked
-        int i = jTable_admin_data.getSelectedRow();
-        String upd_cat = "UPDATE `admin_data` SET `category`= ?, `item_menu` = ?, `price` = ?, `discount` = ? WHERE `item_menu` = '" + jTable_admin_data.getValueAt(i, 1).toString() + "'";
-        
+               
         try {
+            int i = jTable_admin_data.getSelectedRow();
+            String upd_cat = "UPDATE `admin_data` SET `category`= ?, `item_menu` = ?, `price` = ?, `discount` = ? WHERE `item_menu` = '" + jTable_admin_data.getValueAt(i, 1).toString() + "'";
+                        
             p_st = DBConnect.DBConnect.getConnection().prepareStatement(upd_cat);
             p_st.setString(1, jTextField_cat.getText());
             p_st.setString(2, jTextField_item.getText());
             p_st.setString(3, jTextField_price.getText());
             p_st.setString(4, jTextField_disc.getText());
+            
+//            Validation checking
+            if (jTextField_cat.getText().matches(".*[0-9].*")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid category.");
+                return;
+            }
+            if (jTextField_cat.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid category.");
+                return;
+            }
+            if (jTextField_item.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid item.");
+                return;
+            }
+            if (jTextField_price.getText().matches(".*[a-zA-Z].*")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid price.");
+                return;
+            }
+            if (jTextField_disc.getText().matches(".*[a-zA-Z].*")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid discount.");
+                return;
+            }
+            
             int j = p_st.executeUpdate();
             if (j > 0) {
                 JOptionPane.showMessageDialog(null, "Data Updated Successfully.");
@@ -626,13 +650,13 @@ public class AdminPanel extends javax.swing.JFrame {
 //            model.setRowCount(0);
             showAdminTable();
             
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Data Error!", "Error!", 1);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, "Please select a data!", "Error!", 1);
-        }
+        }catch (SQLException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Data Error!", "Error!", 1);
+        } 
     }//GEN-LAST:event_jLabel_updateMouseClicked
 
     private void jLabel_insertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_insertMouseClicked
@@ -644,7 +668,7 @@ public class AdminPanel extends javax.swing.JFrame {
             if (jTextField_cat.getText().matches(".*[0-9].*")) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid category.");
                 return;
-        }
+            }
             if (jTextField_cat.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid category.");
                 return;
@@ -683,19 +707,23 @@ public class AdminPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_insertMouseClicked
 
     private void jLabel_deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_deleteMouseClicked
-        String query = "DELETE FROM `admin_data` WHERE `item_menu` = '" + jTextField_item.getText() + "'";
-         try {
-            p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
-            int i = p_st.executeUpdate();
-            if (i == 1) {
-                JOptionPane.showMessageDialog(null, "Data Deleted Successfully.");
+        try {
+            int selected_row = jTable_admin_data.getSelectedRow();
+            String query = "DELETE FROM `admin_data` WHERE `item_menu` = '" + jTextField_item.getText() + "'";
+            if (selected_row > 0) {
+                p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
+                int i = p_st.executeUpdate();
+                if (i == 1) {
+                    JOptionPane.showMessageDialog(null, "Data Deleted Successfully.");
+                }
+
+                jTextField_cat.setText("");
+                jTextField_item.setText("");
+                jTextField_price.setText("");
+                jTextField_disc.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select an item from table.", "Selection error!", 2);
             }
-            
-            jTextField_cat.setText("");
-            jTextField_item.setText("");
-            jTextField_price.setText("");
-            jTextField_disc.setText("");
-            
             // Refreshing the Admin Table after modification
 //            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
 //            model.setRowCount(0);
