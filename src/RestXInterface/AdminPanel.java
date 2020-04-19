@@ -148,7 +148,7 @@ public class AdminPanel extends javax.swing.JFrame {
 //    }
     
     public void showAdminTable() {
-        String query = "SELECT `category` AS 'Category', `item_menu` AS 'Items', `price` AS 'Price', `discount` AS 'Discou' FROM `admin_data`";
+        String query = "SELECT `category` AS 'Category', `item_menu` AS 'Items', `price` AS 'Price', `discount` AS 'Discount' FROM `admin_data`";
         try {
             p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
             rs = p_st.executeQuery();
