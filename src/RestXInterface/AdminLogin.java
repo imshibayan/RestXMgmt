@@ -28,7 +28,7 @@ public class AdminLogin extends javax.swing.JFrame {
     public AdminLogin() {
         initComponents();
         
-        this.setSize(379, 458);
+        this.setSize(379, 487);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
@@ -52,6 +52,7 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel_restxname = new javax.swing.JLabel();
         jLabel_minimize = new javax.swing.JLabel();
         jLabel_close = new javax.swing.JLabel();
+        jCheckBox_show_pass = new javax.swing.JCheckBox();
         jLabel_bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,7 +133,7 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_login_btn);
-        jLabel_login_btn.setBounds(130, 330, 140, 40);
+        jLabel_login_btn.setBounds(130, 360, 140, 40);
         jLabel_login_btn.setToolTipText("<html><p>username: sh_sa</p><p>password: shsa</p><p>Register form has not been implemented</p><p>yet due to time constraint</p></html>");
 
         jLabel_go_to_main_menu.setBackground(new java.awt.Color(204, 153, 0));
@@ -160,7 +161,7 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_go_to_main_menu);
-        jLabel_go_to_main_menu.setBounds(130, 380, 140, 40);
+        jLabel_go_to_main_menu.setBounds(130, 410, 140, 40);
 
         jLabel_login_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_login_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login.png"))); // NOI18N
@@ -224,6 +225,23 @@ public class AdminLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel_close);
         jLabel_close.setBounds(340, 0, 40, 30);
 
+        jCheckBox_show_pass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox_show_pass.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox_show_pass.setText("Show Password");
+        jCheckBox_show_pass.setOpaque(false);
+        jCheckBox_show_pass.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox_show_passItemStateChanged(evt);
+            }
+        });
+        jCheckBox_show_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_show_passActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox_show_pass);
+        jCheckBox_show_pass.setBounds(130, 320, 140, 25);
+
         jLabel_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login_bg1.jpg"))); // NOI18N
         jLabel_bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -245,7 +263,7 @@ public class AdminLogin extends javax.swing.JFrame {
         PreparedStatement p_st;
         ResultSet rs;
         String username = jTextField_username.getText();
-        String password = new String(jPasswordField.getPassword());
+        String password = String.valueOf(jPasswordField.getPassword());
         // Creating a select query to check the existence of username and password in the database
         String query = "SELECT * FROM `login_details` WHERE `username` = ? AND `password` = ?";
         try {
@@ -257,22 +275,19 @@ public class AdminLogin extends javax.swing.JFrame {
             
             if (!rs.next()) {
                 JOptionPane.showMessageDialog(null, "Invalid Username or Password!", "Login Error", 2);
-                        System.out.println("invalid");
-                        System.out.println(username + password);
+
                         jTextField_username.setText("username");
                         jPasswordField.setText("password");
                         jTextField_username.setForeground(new Color(204,204,204));
                         jPasswordField.setForeground(new Color(204,204,204));
             }
             else {
-                    if (rs.getString("password").equals(password)) {
+                    if (rs.getString("password").equals(password) && rs.getString("username").equals(username)) {
                             new RestXInterface.AdminPanel().setVisible(true);
                             this.dispose();
-                            System.out.println(username + password);
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Invalid Username or Password!", "Login Error", 2);
-                        System.out.println("invalid");
-                        System.out.println(username + password);
                         jTextField_username.setText("username");
                         jPasswordField.setText("password");
                         jTextField_username.setForeground(new Color(204,204,204));
@@ -421,6 +436,18 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel_close.setBackground(new Color(0,0,0,0));
     }//GEN-LAST:event_jLabel_closeMouseReleased
 
+    private void jCheckBox_show_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_show_passActionPerformed
+               
+    }//GEN-LAST:event_jCheckBox_show_passActionPerformed
+
+    private void jCheckBox_show_passItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_show_passItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            jPasswordField.setEchoChar((char) 0);
+        } else {
+            jPasswordField.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBox_show_passItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -455,6 +482,7 @@ public class AdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox_show_pass;
     private javax.swing.JLabel jLabel_bg;
     private javax.swing.JLabel jLabel_close;
     private javax.swing.JLabel jLabel_go_to_main_menu;
