@@ -660,9 +660,17 @@ public class AdminPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_updateMouseClicked
 
     private void jLabel_insertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_insertMouseClicked
-        String query = "INSERT INTO `admin_data`(`category`, `item_menu`, `price`, `discount`) VALUES ('" + jTextField_cat.getText() + "', '" + jTextField_item.getText() + "', '" + jTextField_price.getText() + "', '" + jTextField_disc.getText() + "')";
-        
+       
         try {
+            String query = "INSERT INTO `admin_data`(`category`, `item_menu`, `price`, `discount`) VALUES ('" + jTextField_cat.getText() + "', '" + jTextField_item.getText() + "', '" + jTextField_price.getText() + "', '" + jTextField_disc.getText() + "')";
+            ArrayList<String> already_added_items = new ArrayList<>();
+            
+            for (int i = 0; i < jTable_admin_data.getRowCount(); i++) {
+                already_added_items.add(jTable_admin_data.getValueAt(i, 1).toString());
+            }
+//            for (int i = 0; i < already_added_items.size(); i++)
+//            System.out.println(already_added_items.get(i));
+            
             PreparedStatement p_st_ins;
             p_st_ins = DBConnect.DBConnect.getConnection().prepareStatement(query);
             if (jTextField_cat.getText().matches(".*[0-9].*")) {
@@ -685,19 +693,24 @@ public class AdminPanel extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please enter a valid discount.");
                 return;
             }
-            int i = p_st_ins.executeUpdate();
-            if (i == 1) {
-                JOptionPane.showMessageDialog(null, "Data Entered Successfully.");
+            if (!already_added_items.contains(jTextField_item.getText())) {
+                int i = p_st_ins.executeUpdate();
+                if (i == 1) {
+                    JOptionPane.showMessageDialog(null, "Data Entered Successfully.");
+                }
+
+                jTextField_cat.setText("");
+                jTextField_item.setText("");
+                jTextField_price.setText("");
+                jTextField_disc.setText("");
+
+                // Refreshing the Admin Table after modification
+    //            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
+    //            model.setRowCount(0);
+            } else {
+                JOptionPane.showMessageDialog(null, "Item exists, Please update it.");
+                return;
             }
-            
-            jTextField_cat.setText("");
-            jTextField_item.setText("");
-            jTextField_price.setText("");
-            jTextField_disc.setText("");
-            
-            // Refreshing the Admin Table after modification
-//            DefaultTableModel model = (DefaultTableModel)jTable_admin_data.getModel();
-//            model.setRowCount(0);
             showAdminTable();
             
         } catch (SQLException ex) {
