@@ -58,8 +58,8 @@ public class CustomerPortal extends javax.swing.JFrame {
         jTable_avl_itm.setDefaultEditor(Object.class, null);
         jTable_menu.setDefaultEditor(Object.class, null);
         
+        jTable_avl_itm.setRowHeight(30);
         addDataToTableAvail();
-        
         itemComboBox();
         
     }
@@ -77,7 +77,10 @@ public class CustomerPortal extends javax.swing.JFrame {
             System.err.println("SQL Exception: " + e.toString());
         } 
     }
-
+    
+    
+    
+    
     public class Product {
         private String item;
         private String price_of_item;
@@ -274,7 +277,6 @@ public class CustomerPortal extends javax.swing.JFrame {
         jLabel_close = new javax.swing.JLabel();
         jLabel_avail_items = new javax.swing.JLabel();
         jScrollPane_avl_itm = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jTable_avl_itm = new javax.swing.JTable();
         jLabel_border = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -419,13 +421,11 @@ public class CustomerPortal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable_avl_itm);
+        jScrollPane_avl_itm.setViewportView(jTable_avl_itm);
         if (jTable_avl_itm.getColumnModel().getColumnCount() > 0) {
             jTable_avl_itm.getColumnModel().getColumn(0).setResizable(false);
             jTable_avl_itm.getColumnModel().getColumn(1).setResizable(false);
         }
-
-        jScrollPane_avl_itm.setViewportView(jScrollPane1);
 
         getContentPane().add(jScrollPane_avl_itm);
         jScrollPane_avl_itm.setBounds(20, 190, 260, 280);

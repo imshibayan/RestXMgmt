@@ -723,9 +723,29 @@ public class AdminPanel extends javax.swing.JFrame {
         try {
             int selected_row = jTable_admin_data.getSelectedRow();
             String query = "DELETE FROM `admin_data` WHERE `item_menu` = '" + jTextField_item.getText() + "'";
-            if (selected_row > 0) {
+            String query_avail = "SELECT `menu_item` FROM `item_avail`";
+            
+            if (selected_row >= 0) {
                 p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
                 int i = p_st.executeUpdate();
+                
+                p_st = DBConnect.DBConnect.getConnection().prepareStatement(query_avail);
+                rs = p_st.executeQuery();
+                
+                int flag = 0;
+                while (rs.next()) {
+                    if (rs.getString("menu_item").equals(jTextField_item.getText())) {
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag == 1) {
+                    String query_del_avl = "DELETE FROM `item_avail` WHERE `menu_item` = '" 
+                            + jTextField_item.getText() + "'";
+                    p_st = DBConnect.DBConnect.getConnection().prepareStatement(query_del_avl);
+                    p_st.executeUpdate();
+                }
+                
                 if (i == 1) {
                     JOptionPane.showMessageDialog(null, "Data Deleted Successfully.");
                 }
