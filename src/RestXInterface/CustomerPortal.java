@@ -29,12 +29,18 @@ import static java.awt.print.Printable.PAGE_EXISTS;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
+//For date and time
+ import java.util.Date;
+ import java.text.DateFormat;
+ import java.text.SimpleDateFormat;
+
 /**
  *
  * @author shibayanmondal
  */
 public class CustomerPortal extends javax.swing.JFrame {
 
+    
     int pX,pY;
     DefaultTableModel availTable, menuTable, billTable;
     
@@ -64,6 +70,11 @@ public class CustomerPortal extends javax.swing.JFrame {
         
     }
     
+    public String dateTime() {
+        DateFormat dt_tm = new SimpleDateFormat("dd-MMM-YYYY    hh:mm:ss aa");
+        Date date_time_now = new Date();
+        return (dt_tm.format(date_time_now));
+    }
     
     private void addDataToTableAvail () {
         
@@ -225,6 +236,8 @@ public class CustomerPortal extends javax.swing.JFrame {
           
             g2d.drawString("-------------------------------------",10,y); y+=yShift;
             g2d.drawString(" Total amount:               " + jTextField_total.getText() + "   ", 10, y); y+=yShift;
+            y+=yShift;
+            g2d.drawString(" Date:  " + dateTime(), 10, y); y+=yShift;
             g2d.drawString("-------------------------------------",10,y); y+=yShift;
 
             g2d.drawString("*************************************",10,y); y+=yShift;
