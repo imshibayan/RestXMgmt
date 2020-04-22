@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
-
+import javax.swing.JTable;
 //Libraries to import for generate Graphics bill
 import java.awt.Font;
 import java.awt.Graphics;
@@ -33,6 +33,7 @@ import java.awt.print.PrinterJob;
  import java.util.Date;
  import java.text.DateFormat;
  import java.text.SimpleDateFormat;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -60,14 +61,27 @@ public class CustomerPortal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         
+        addDataToTableAvail();
         // Make the text of the table ineditable
         jTable_avl_itm.setDefaultEditor(Object.class, null);
         jTable_menu.setDefaultEditor(Object.class, null);
+        jTable_selected_item.setDefaultEditor(Object.class, null);
+        
+        int width = jTable_avl_itm.getWidth();
+        System.out.println(width);
+        setColumnWidth(jTable_avl_itm, 0, 100);
+        setColumnWidth(jTable_avl_itm, 1, 120);
+        setColumnWidth(jTable_avl_itm, 2, 34);
         
         jTable_avl_itm.setRowHeight(30);
-        addDataToTableAvail();
         itemComboBox();
         
+    }
+    
+    public void setColumnWidth(JTable table, int col, int width) {
+        TableColumn colm = null;
+        colm = table.getColumnModel().getColumn(col);
+        colm.setPreferredWidth(width);
     }
     
     public String dateTime() {
@@ -423,11 +437,11 @@ public class CustomerPortal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Menu", "QTY."
+                "Category", "Menu", "QTY."
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -436,12 +450,12 @@ public class CustomerPortal extends javax.swing.JFrame {
         });
         jScrollPane_avl_itm.setViewportView(jTable_avl_itm);
         if (jTable_avl_itm.getColumnModel().getColumnCount() > 0) {
-            jTable_avl_itm.getColumnModel().getColumn(0).setResizable(false);
             jTable_avl_itm.getColumnModel().getColumn(1).setResizable(false);
+            jTable_avl_itm.getColumnModel().getColumn(2).setResizable(false);
         }
 
         getContentPane().add(jScrollPane_avl_itm);
-        jScrollPane_avl_itm.setBounds(20, 190, 260, 280);
+        jScrollPane_avl_itm.setBounds(20, 200, 260, 280);
 
         jLabel_border.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(153, 255, 255)));
         getContentPane().add(jLabel_border);
@@ -1173,7 +1187,6 @@ public class CustomerPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_minimize;
     private javax.swing.JLabel jLabel_remove;
     private javax.swing.JLabel jLabel_restxname;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane_avl_itm;
     private javax.swing.JScrollPane jScrollPane_menu;
     private javax.swing.JScrollPane jScrollPane_selected_item;
