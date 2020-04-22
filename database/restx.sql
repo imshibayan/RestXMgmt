@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2020 at 06:03 PM
+-- Generation Time: Apr 22, 2020 at 06:55 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin_data` (
-  `category` varchar(200) NOT NULL,
-  `item_menu` varchar(200) NOT NULL,
+  `category` text NOT NULL,
+  `item_menu` text NOT NULL,
   `price` float NOT NULL,
   `discount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,18 +39,23 @@ CREATE TABLE `admin_data` (
 --
 
 INSERT INTO `admin_data` (`category`, `item_menu`, `price`, `discount`) VALUES
-('Starter', 'Chicken Momo', 180, 5),
-('Biryani', 'Chicken Normal Biryani', 180, 3),
-('Kabab', 'Paneer Tikka Kabab', 100, 3),
-('Curries', 'Butter Chicken Boneless', 200, 5),
-('Biryani', 'Mutton Biryani', 220, 10),
-('Curries', 'Fish Curry', 180, 2),
-('Desert', 'Vanilla Scotch', 80, 10),
-('Kabab', 'Chicken Reshmi Kabab', 150, 0),
-('Biryani', 'Hyderabadi Biryani', 190, 0),
-('Starter', 'Fish Finger', 130, 0),
-('Desert', 'Butter Scotch', 80, 2),
-('Starter', 'Grilled Chicken (4 pc.)', 300, 0);
+('aaaaaaa', 'aaaaaaaaaaaaaaa', 111111, 11111),
+('ffffffff', 'ffffffffff', 244, 234);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `billing_details`
+--
+
+CREATE TABLE `billing_details` (
+  `id` int(11) NOT NULL,
+  `item` varchar(200) NOT NULL,
+  `data_time` datetime NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `total_price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -63,16 +68,6 @@ CREATE TABLE `item_avail` (
   `menu_item` varchar(200) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `item_avail`
---
-
-INSERT INTO `item_avail` (`category`, `menu_item`, `quantity`) VALUES
-('Starter', 'Chicken Momo', 90),
-('Biryani', 'Chicken Normal Biryani', 140),
-('Kabab', 'Paneer Tikka Kabab', 8),
-('Curries', 'Butter Chicken Boneless', 520);
 
 -- --------------------------------------------------------
 
@@ -98,6 +93,12 @@ INSERT INTO `login_details` (`ID`, `username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `billing_details`
+--
+ALTER TABLE `billing_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `login_details`
 --
 ALTER TABLE `login_details`
@@ -106,6 +107,12 @@ ALTER TABLE `login_details`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `billing_details`
+--
+ALTER TABLE `billing_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `login_details`
