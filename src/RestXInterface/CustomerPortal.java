@@ -288,6 +288,52 @@ public class CustomerPortal extends javax.swing.JFrame {
 }
     
     
+    
+    public class BillData {
+        String item;
+        int qty;
+        float price;
+        
+        public BillData(String item, int qty, float price) {
+            this.item = item;
+            this.qty = qty;
+            this.price = price;
+        }
+        
+        void setItem(String item) {
+            this.item = item;
+        }
+        String getItem() {
+            return item;
+        }
+        void setQty(int qty) {
+            this.qty = qty;
+        }
+        int getQty() {
+            return qty;
+        }
+        void setPrice(float price) {
+            this.price = price;
+        }
+        float getPrice() {
+            return price;
+        }
+    }
+    
+    public ArrayList<BillData> getAllBilling() {
+        ArrayList<BillData> new_bill = new ArrayList<>();
+        int total_row = jTable_selected_item.getRowCount();
+        if (total_row>0) {
+            for (int i = 0; i < total_row; i++) {
+                new_bill.get(i).setItem(jTable_selected_item.getValueAt(i, 0).toString());
+                new_bill.get(i).setQty(Integer.parseInt(jTable_selected_item.getValueAt(i, 1).toString()));
+                new_bill.get(i).setPrice(Float.parseFloat(jTable_selected_item.getValueAt(i, 2).toString()));
+            }
+        }
+        return new_bill;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -976,12 +1022,10 @@ public class CustomerPortal extends javax.swing.JFrame {
                     // Connect to the database
                     p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
                     rs = p_st.executeQuery();
-
-                    int i = jTable_selected_item.getRowCount();
                     
                     
                         while (rs.next()) {
-                            for (int j = 0; j < i; j++) {
+                            for (int j = 0; j < no_rows_selected_table; j++) {
                             target_menu = jTable_selected_item.getValueAt(j, 0).toString();
                             int avl_qty = rs.getInt("quantity");
                                 if (target_menu.equals(rs.getString("menu_item"))) {
@@ -997,10 +1041,28 @@ public class CustomerPortal extends javax.swing.JFrame {
 //                                    upd_st.close();
                                     break;
                                 }
-                            System.out.println(i);
+                            System.out.println(j);
                         }
                     }
 //                    p_st.close();
+                    
+//                    // Adding billing datas to the databases
+//                    PreparedStatement p_st_bill;
+//                    ArrayList<BillData> new_bill = new ArrayList<>();
+//                    new_bill = getAllBilling();
+//                        for (int j = 0; j < no_rows_selected_table; j++) {
+//                            String query_bill = "INSERT INTO `billing_details` (`item`, `quantity`,"
+//                                    + "`price`, `date_time`, `total_price`) VALUES ('"
+//                                    + new_bill.get(j).getItem() + "', '"
+//                                    + new_bill.get(j).getQty() + "', '" 
+//                                    + new_bill.get(j).getPrice() + "', '"
+//                                    + dateTime() + "', '" 
+//                                    + jTextField_total.getText() + "')";
+//                            
+//                            p_st_bill = DBConnect.DBConnect.getConnection().prepareStatement(query_bill);
+//                            p_st_bill.executeUpdate();
+//                        }
+                    
                     
                     ((DefaultTableModel)jTable_selected_item.getModel()).setRowCount(0);
                     jTextField_total.setText("");
@@ -1062,10 +1124,10 @@ public class CustomerPortal extends javax.swing.JFrame {
             
         } catch(ArrayIndexOutOfBoundsException e) {
             Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, e);
-            JOptionPane.showMessageDialog(null, "No selection!", "Selection error!", 3);
+            JOptionPane.showMessageDialog(null, "No selectionarr!", "Selection error!", 3);
         } catch(IndexOutOfBoundsException c) {
             Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, c);
-            JOptionPane.showMessageDialog(null, "No selection!", "Selection error!", 3);
+            JOptionPane.showMessageDialog(null, "No selectionind!", "Selection error!", 3);
         }
     }//GEN-LAST:event_jLabel_bill_genMouseClicked
 
