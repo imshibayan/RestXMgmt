@@ -54,6 +54,7 @@ public class CustomerPortal extends javax.swing.JFrame {
     ArrayList<String> item_selected;
     ArrayList<String> qty_selected;
     ArrayList<String> net_amt;
+    ArrayList<String> item_in_bill = new ArrayList<>();
     
     public CustomerPortal() {
         initComponents();
@@ -67,15 +68,21 @@ public class CustomerPortal extends javax.swing.JFrame {
         jTable_menu.setDefaultEditor(Object.class, null);
         jTable_selected_item.setDefaultEditor(Object.class, null);
         
-        int width = jTable_avl_itm.getWidth();
+        int width = jTable_selected_item.getWidth();
         System.out.println(width);
         setColumnWidth(jTable_avl_itm, 0, 100);
         setColumnWidth(jTable_avl_itm, 1, 140);
         setColumnWidth(jTable_avl_itm, 2, 84);
         
         jTable_avl_itm.setRowHeight(30);
+        
+        jTable_menu.setRowHeight(30);
         itemComboBox();
         
+        setColumnWidth(jTable_selected_item, 0, 120);
+        setColumnWidth(jTable_selected_item, 1, 64);
+        setColumnWidth(jTable_selected_item, 2, 80);
+        jTable_selected_item.setRowHeight(30);
     }
     
     public void setColumnWidth(JTable table, int col, int width) {
@@ -742,12 +749,17 @@ public class CustomerPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_qsFocusLost
 
     private void jTextField_qsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_qsKeyReleased
-        String query = "SELECT `category` AS Category, `menu_item` AS Items, `quantity` AS Quantity FROM `item_avail` WHERE `menu_item` LIKE '%" + 
+        String query = "SELECT `category` AS Category, `menu_item` AS Items, `quantity` AS 'QTY.' FROM `item_avail` WHERE `menu_item` LIKE '%" + 
                 jTextField_qs.getText() + "%'";
         try {
             p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
             rs = p_st.executeQuery();
             jTable_avl_itm.setModel(DbUtils.resultSetToTableModel(rs));
+            setColumnWidth(jTable_avl_itm, 0, 100);
+            setColumnWidth(jTable_avl_itm, 1, 140);
+            setColumnWidth(jTable_avl_itm, 2, 84);
+        
+            jTable_avl_itm.setRowHeight(30);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -849,12 +861,10 @@ public class CustomerPortal extends javax.swing.JFrame {
         String text_qty = jTextField_qty.getText();
         String discount = jTextField_disc.getText();
         // Row count of jTable_selected_item
-        
-        
-        
+
         if (jTable_selected_item.getRowCount() == 0) {
-        billTable = new DefaultTableModel();
-        billTable.setColumnIdentifiers(new Object[]{"Item","Net QTY.", "Net Amount"});
+            billTable = new DefaultTableModel();
+            billTable.setColumnIdentifiers(new Object[]{"Item","Net QTY.", "Net Amount"});
         }
         Object[] row = new Object[3];
         try {
@@ -876,20 +886,25 @@ public class CustomerPortal extends javax.swing.JFrame {
                 }
             }
             if (flag != 0) {
-        avail_quantity = Integer.parseInt(jTable_avl_itm.getValueAt(target_row, 2).toString());
+                avail_quantity = Integer.parseInt(jTable_avl_itm.getValueAt(target_row, 2).toString());
             }
         
         if (text_qty.equals("") || !text_qty.matches("^[0-9]+$")) {
             JOptionPane.showMessageDialog(null, "Please enter valid quantity!", "Wrong Quantity", 1);
+//            flag == 0 means the item being ordered is not available right now
         } else if (avail_quantity < qty || flag == 0) {
-            JOptionPane.showMessageDialog(null, "Quantity not available!", "Quantity!",1);
+            JOptionPane.showMessageDialog(null, "Quantity not available!", "Quantity error!",1);
+        } else if (item_in_bill.contains(jTable_menu.getValueAt(i, 0).toString())) {
+            JOptionPane.showMessageDialog(null, "Items exists. Please update it.", "Item exists!", 2);
         } else {
             disc = Float.parseFloat(discount);
             // 1st row is item name
             row[0] = jTable_menu.getValueAt(i, 0);
+            item_in_bill.add(jTable_menu.getValueAt(i, 0).toString());
+            System.out.println(item_in_bill);
             // 2nd row is net quantity
             row[1] = qty;
-            // 3rd row is total amount calculation
+            // 3rd row is total amount calculation after discount
             price_per_item = Float.parseFloat(jTable_menu.getValueAt(i, 1).toString());
             total_amount_before_disc = (price_per_item*qty);
             total_amount_after_disc = total_amount_before_disc - ((total_amount_before_disc)*disc)/100;
@@ -903,8 +918,15 @@ public class CustomerPortal extends javax.swing.JFrame {
             
 //            System.out.println(total_amount_of_all_items);
             billTable.addRow(row);
+            
         }
         jTable_selected_item.setModel(billTable);
+        
+        setColumnWidth(jTable_selected_item, 0, 120);
+        setColumnWidth(jTable_selected_item, 1, 64);
+        setColumnWidth(jTable_selected_item, 2, 80);
+        jTable_selected_item.setRowHeight(30);
+        
         jTextField_qty.setText("");
         
         int row_number = jTable_selected_item.getRowCount();
@@ -944,6 +966,14 @@ public class CustomerPortal extends javax.swing.JFrame {
                 jTable_avl_itm.setValueAt(avail_quantity, target_row, 2);
 
                 ((DefaultTableModel)jTable_selected_item.getModel()).removeRow(i);
+                
+//              Deleting the item from billing item arraylist
+                item_in_bill.remove(jTable_avl_itm.getValueAt(target_row, 1).toString());
+                
+                setColumnWidth(jTable_selected_item, 0, 120);
+                setColumnWidth(jTable_selected_item, 1, 64);
+                setColumnWidth(jTable_selected_item, 2, 80);
+                jTable_selected_item.setRowHeight(30);
 
             } else {
                 JOptionPane.showMessageDialog(null,"Please select a row!" ,"Invalid Selection!",1);
@@ -1157,7 +1187,7 @@ public class CustomerPortal extends javax.swing.JFrame {
 
     private void jLabel_addMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_addMouseReleased
         jLabel_add.setBorder(BorderFactory.createEmptyBorder());
-        jLabel_add.setBackground(new Color(0,102,255));
+        jLabel_add.setBackground(new Color(0,153,255));
     }//GEN-LAST:event_jLabel_addMouseReleased
 
     private void jLabel_removeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_removeMouseEntered
