@@ -28,6 +28,7 @@ import static java.awt.print.Printable.NO_SUCH_PAGE;
 import static java.awt.print.Printable.PAGE_EXISTS;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.math.BigDecimal;
 
 //For date and time
  import java.util.Date;
@@ -962,7 +963,8 @@ public class CustomerPortal extends javax.swing.JFrame {
         for (int j = 0; j < row_number; j++) {
             total_amount_of_all_items += Float.parseFloat(jTable_selected_item.getValueAt(j, 2).toString());
         }
-        jTextField_total.setText(Float.toString(total_amount_of_all_items));
+        
+        jTextField_total.setText(String.format("%.2f", total_amount_of_all_items));
         } catch(ArrayIndexOutOfBoundsException e) {
             System.err.println("ArrayIndexOutOfBoundsException: " + e.toString());
             JOptionPane.showMessageDialog(null, "Select an item.", "Selection error!", 1);
@@ -1014,7 +1016,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             for (int j = 0; j < row_number; j++) {
                 total_amount_of_all_items += Float.parseFloat(jTable_selected_item.getValueAt(j, 2).toString());
             }
-            jTextField_total.setText(Float.toString(total_amount_of_all_items));
+            jTextField_total.setText(String.format("%.2f", total_amount_of_all_items));
         } catch(ArrayIndexOutOfBoundsException e) {
             System.err.println("ArrayIndexOutOfBoundsException: " + e.toString());
             JOptionPane.showMessageDialog(null, "Select an item.", "Selection error!", 1);
