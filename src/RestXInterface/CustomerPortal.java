@@ -1308,6 +1308,11 @@ public class CustomerPortal extends javax.swing.JFrame {
             float curr_price = (price_before_update/prev_qty)*curr_qty;
             jTable_selected_item.setValueAt(curr_price, sel_row, 2);
             
+//            Updating Total price
+            float total_price = Float.parseFloat(jTextField_total.getText());
+            total_price = total_price - price_before_update + curr_price;
+            jTextField_total.setText(Float.toString(total_price));
+            
             jTextField_qty.setText("");
             
         } catch (IndexOutOfBoundsException e) {
