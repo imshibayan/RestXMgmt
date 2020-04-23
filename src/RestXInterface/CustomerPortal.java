@@ -35,6 +35,7 @@ import java.math.BigDecimal;
  import java.text.DateFormat;
  import java.text.SimpleDateFormat;
 import javax.swing.table.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 
 /**
  *
@@ -585,6 +586,9 @@ public class CustomerPortal extends javax.swing.JFrame {
         jTable_selected_item.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_selected_itemMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable_selected_itemMousePressed(evt);
             }
         });
         jTable_selected_item.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -1352,6 +1356,10 @@ public class CustomerPortal extends javax.swing.JFrame {
     private void jTable_selected_itemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable_selected_itemPropertyChange
         
     }//GEN-LAST:event_jTable_selected_itemPropertyChange
+
+    private void jTable_selected_itemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_selected_itemMousePressed
+//        TableItem item = jTable_selected_item.getItem();
+    }//GEN-LAST:event_jTable_selected_itemMousePressed
 
     /**
      * @param args the command line arguments
