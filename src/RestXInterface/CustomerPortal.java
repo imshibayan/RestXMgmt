@@ -70,8 +70,8 @@ public class CustomerPortal extends javax.swing.JFrame {
         int width = jTable_avl_itm.getWidth();
         System.out.println(width);
         setColumnWidth(jTable_avl_itm, 0, 100);
-        setColumnWidth(jTable_avl_itm, 1, 120);
-        setColumnWidth(jTable_avl_itm, 2, 34);
+        setColumnWidth(jTable_avl_itm, 1, 140);
+        setColumnWidth(jTable_avl_itm, 2, 84);
         
         jTable_avl_itm.setRowHeight(30);
         itemComboBox();
@@ -93,7 +93,7 @@ public class CustomerPortal extends javax.swing.JFrame {
     private void addDataToTableAvail () {
         
         // Creating a select query to check the existence of username and password in the database
-        String query = "SELECT `category` AS 'Category', `menu_item` AS 'Items', `quantity` AS 'Quantity' FROM `item_avail`";
+        String query = "SELECT `category` AS 'Category', `menu_item` AS 'Items', `quantity` AS 'QTY.' FROM `item_avail`";
         try {
             p_st = DBConnect.DBConnect.getConnection().prepareStatement(query);
             rs = p_st.executeQuery(query);
@@ -392,7 +392,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox_category);
-        jComboBox_category.setBounds(340, 150, 260, 30);
+        jComboBox_category.setBounds(330, 150, 280, 30);
 
         jTextField_qs.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jTextField_qs.setForeground(new java.awt.Color(153, 153, 153));
@@ -422,7 +422,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField_qs);
-        jTextField_qs.setBounds(20, 150, 260, 30);
+        jTextField_qs.setBounds(20, 150, 290, 30);
 
         jLabel_minimize.setBackground(new java.awt.Color(204, 204, 255));
         jLabel_minimize.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
@@ -502,11 +502,11 @@ public class CustomerPortal extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane_avl_itm);
-        jScrollPane_avl_itm.setBounds(20, 200, 260, 280);
+        jScrollPane_avl_itm.setBounds(20, 190, 290, 290);
 
         jLabel_border.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(153, 255, 255)));
         getContentPane().add(jLabel_border);
-        jLabel_border.setBounds(290, 110, 20, 380);
+        jLabel_border.setBounds(320, 120, 10, 380);
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -531,19 +531,19 @@ public class CustomerPortal extends javax.swing.JFrame {
         jScrollPane_menu.setViewportView(jTable_menu);
 
         getContentPane().add(jScrollPane_menu);
-        jScrollPane_menu.setBounds(340, 190, 260, 190);
+        jScrollPane_menu.setBounds(330, 190, 280, 200);
 
         jLabel_Quantity.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel_Quantity.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_Quantity.setText("Quantity");
         getContentPane().add(jLabel_Quantity);
-        jLabel_Quantity.setBounds(440, 440, 70, 30);
+        jLabel_Quantity.setBounds(450, 440, 70, 30);
 
         jLabel_disc.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel_disc.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_disc.setText("Discount(%)");
         getContentPane().add(jLabel_disc);
-        jLabel_disc.setBounds(420, 400, 100, 30);
+        jLabel_disc.setBounds(430, 400, 100, 30);
 
         jTextField_disc.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jTextField_disc.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
@@ -554,12 +554,12 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField_disc);
-        jTextField_disc.setBounds(520, 400, 80, 30);
+        jTextField_disc.setBounds(530, 400, 80, 30);
 
         jTextField_qty.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jTextField_qty.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         getContentPane().add(jTextField_qty);
-        jTextField_qty.setBounds(520, 440, 80, 30);
+        jTextField_qty.setBounds(530, 440, 80, 30);
 
         jTable_selected_item.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -577,7 +577,7 @@ public class CustomerPortal extends javax.swing.JFrame {
         jScrollPane_selected_item.setViewportView(jTable_selected_item);
 
         getContentPane().add(jScrollPane_selected_item);
-        jScrollPane_selected_item.setBounds(740, 150, 260, 230);
+        jScrollPane_selected_item.setBounds(730, 150, 270, 240);
 
         jLabel_add.setBackground(new java.awt.Color(0, 153, 255));
         jLabel_add.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
