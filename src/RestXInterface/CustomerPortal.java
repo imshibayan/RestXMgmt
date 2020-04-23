@@ -222,8 +222,7 @@ public class CustomerPortal extends javax.swing.JFrame {
         
         if (pageIndex == 0) {                    
 
-        Graphics2D g2d = (Graphics2D) graphics;                    
-        double width = pageFormat.getImageableWidth();                               
+        Graphics2D g2d = (Graphics2D) graphics;                                                 
         g2d.translate((int)pageFormat.getImageableX(),(int)pageFormat.getImageableY()); 
         
         try {
@@ -1130,7 +1129,9 @@ public class CustomerPortal extends javax.swing.JFrame {
 //                } catch (SQLException ex) {
 //                    Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-                }
+                } else {
+                JOptionPane.showMessageDialog(null, "No items in bill.", "Billing error!", 2);
+            }
             
         } catch(ArrayIndexOutOfBoundsException e) {
             Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, e);
