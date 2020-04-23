@@ -702,9 +702,9 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_go_back_to_main);
-        jLabel_go_back_to_main.setBounds(850, 450, 150, 40);
+        jLabel_go_back_to_main.setBounds(850, 440, 150, 40);
 
-        jLabel_update.setBackground(new java.awt.Color(51, 255, 51));
+        jLabel_update.setBackground(new java.awt.Color(0, 255, 0));
         jLabel_update.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel_update.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_update.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -713,6 +713,18 @@ public class CustomerPortal extends javax.swing.JFrame {
         jLabel_update.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_updateMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_updateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_updateMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel_updateMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel_updateMouseReleased(evt);
             }
         });
         getContentPane().add(jLabel_update);
@@ -1280,7 +1292,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             updated_quantity = Integer.parseInt(jTable_avl_itm.getValueAt(target_row_of_avl, 2).toString()) + prev_qty - curr_qty;
             
             if (updated_quantity < 0) {
-                JOptionPane.showMessageDialog(null, "Quantity not available.", "Quantity erro!", 2);
+                JOptionPane.showMessageDialog(null, "Quantity not available.", "Quantity error!", 2);
                 return;
             }
 //            Setting current quantity to Billing Table
@@ -1288,6 +1300,11 @@ public class CustomerPortal extends javax.swing.JFrame {
             
 //            Setting updated quantity to Available Item Table
             jTable_avl_itm.setValueAt(updated_quantity, target_row_of_avl, 2);
+            
+//            Net amount calculation in billing table
+            float price_before_update = Float.parseFloat(jTable_selected_item.getValueAt(sel_row, 2).toString());
+            float curr_price = (price_before_update/prev_qty)*curr_qty;
+            jTable_selected_item.setValueAt(curr_price, sel_row, 2);
             
             jTextField_qty.setText("");
             
@@ -1299,6 +1316,22 @@ public class CustomerPortal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please enter valid quantity.", "Quantity error!", 2);
         }
     }//GEN-LAST:event_jLabel_updateMouseClicked
+
+    private void jLabel_updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseEntered
+        jLabel_update.setBackground(new Color(0,204,0));
+    }//GEN-LAST:event_jLabel_updateMouseEntered
+
+    private void jLabel_updateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMousePressed
+        jLabel_update.setBackground(new Color(0,153,0));
+    }//GEN-LAST:event_jLabel_updateMousePressed
+
+    private void jLabel_updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseExited
+        jLabel_update.setBackground(new Color(0,255,0));
+    }//GEN-LAST:event_jLabel_updateMouseExited
+
+    private void jLabel_updateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseReleased
+        jLabel_update.setBackground(new Color(0,255,0));
+    }//GEN-LAST:event_jLabel_updateMouseReleased
 
     /**
      * @param args the command line arguments
