@@ -196,7 +196,7 @@ public class CustomerPortal extends javax.swing.JFrame {
         Paper paper = pf.getPaper();    
 
         double bodyHeight = baseHeight;  
-        double headerHeight = 15.0;                  
+        double headerHeight = 17.0;                  
         double footerHeight = 15.0;        
         double width = cm_to_pp(8); 
         double height = cm_to_pp(headerHeight+bodyHeight+footerHeight); 
@@ -238,6 +238,10 @@ public class CustomerPortal extends javax.swing.JFrame {
             int yShift = 10;
             int headerRectHeight=15;
             
+            p_st = DBConnect.DBConnect.getConnection().prepareStatement("SELECT `id` FROM `billing_details`");
+            rs = p_st.executeQuery();
+            rs.last();
+            int id = Integer.parseInt(rs.getString("id")) + 1;
             
             g2d.setFont(new Font("Monospaced",Font.PLAIN,9));
             g2d.drawString(" Customer Copy                       ",12,y); y+=yShift;
@@ -247,6 +251,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             g2d.drawString("       88888888, xyz@ex.com          ",12,y); y+=yShift;
             g2d.drawString("-------------------------------------",12,y); y+=headerRectHeight;
 
+            g2d.drawString("Bill No: " + id , 10, y); y+=yShift; 
             g2d.drawString(" Item Name                  Price    ",10,y); y+=yShift;
             g2d.drawString("-------------------------------------",10,y); y+=headerRectHeight;
      
@@ -256,16 +261,14 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
           
             g2d.drawString("-------------------------------------",10,y); y+=yShift;
-            g2d.drawString(" Total amount:               " + jTextField_total.getText() + "   ", 10, y); y+=yShift;
+            g2d.drawString(" Total amount:             " + jTextField_total.getText() + "   ", 10, y); y+=yShift;
             y+=yShift;
             g2d.drawString(" Date:  " + dateTime(), 10, y); y+=yShift;
             g2d.drawString("-------------------------------------",10,y); y+=yShift;
 
             g2d.drawString("*************************************",10,y); y+=yShift;
-            g2d.drawString("      THANK YOU, COME AGAIN          ",10,y); y+=yShift;
+            g2d.drawString("      THANK YOU, VISIT AGAIN         ",10,y); y+=yShift;
             g2d.drawString("*************************************",10,y); y+=yShift;
-            g2d.drawString("        Shibayan | Sandeep            ",10,y); y+=yShift;
-            g2d.drawString("                END                   ",10,y); y+=yShift;
             y += yShift;
             y += yShift;
             y += yShift;
@@ -341,6 +344,7 @@ public class CustomerPortal extends javax.swing.JFrame {
         }
         return new_bill_ar;
     }
+    
     
     
     /**
@@ -522,7 +526,7 @@ public class CustomerPortal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create Bill");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(600, 110, 120, 30);
+        jLabel1.setBounds(610, 110, 120, 30);
 
         jTable_menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -583,6 +587,11 @@ public class CustomerPortal extends javax.swing.JFrame {
                 jTable_selected_itemMouseClicked(evt);
             }
         });
+        jTable_selected_item.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable_selected_itemPropertyChange(evt);
+            }
+        });
         jScrollPane_selected_item.setViewportView(jTable_selected_item);
 
         getContentPane().add(jScrollPane_selected_item);
@@ -612,7 +621,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_add);
-        jLabel_add.setBounds(620, 180, 100, 40);
+        jLabel_add.setBounds(620, 190, 100, 40);
 
         jLabel_remove.setBackground(new java.awt.Color(255, 102, 102));
         jLabel_remove.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -638,7 +647,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_remove);
-        jLabel_remove.setBounds(620, 230, 100, 40);
+        jLabel_remove.setBounds(620, 240, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -677,7 +686,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_bill_gen);
-        jLabel_bill_gen.setBounds(620, 330, 100, 60);
+        jLabel_bill_gen.setBounds(620, 340, 100, 40);
 
         jLabel_go_back_to_main.setBackground(new java.awt.Color(204, 153, 0));
         jLabel_go_back_to_main.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
@@ -729,7 +738,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_update);
-        jLabel_update.setBounds(620, 280, 100, 40);
+        jLabel_update.setBounds(620, 290, 100, 40);
 
         jLabel_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/blue_bg.png"))); // NOI18N
         jLabel_bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -1339,6 +1348,10 @@ public class CustomerPortal extends javax.swing.JFrame {
     private void jLabel_updateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseReleased
         jLabel_update.setBackground(new Color(0,255,0));
     }//GEN-LAST:event_jLabel_updateMouseReleased
+
+    private void jTable_selected_itemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable_selected_itemPropertyChange
+        
+    }//GEN-LAST:event_jTable_selected_itemPropertyChange
 
     /**
      * @param args the command line arguments
