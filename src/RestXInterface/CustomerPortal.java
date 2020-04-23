@@ -375,6 +375,7 @@ public class CustomerPortal extends javax.swing.JFrame {
         jTextField_total = new javax.swing.JTextField();
         jLabel_bill_gen = new javax.swing.JLabel();
         jLabel_go_back_to_main = new javax.swing.JLabel();
+        jLabel_update = new javax.swing.JLabel();
         jLabel_bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -610,7 +611,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_add);
-        jLabel_add.setBounds(620, 200, 100, 40);
+        jLabel_add.setBounds(620, 180, 100, 40);
 
         jLabel_remove.setBackground(new java.awt.Color(255, 102, 102));
         jLabel_remove.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -636,7 +637,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_remove);
-        jLabel_remove.setBounds(620, 250, 100, 40);
+        jLabel_remove.setBounds(620, 230, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -675,7 +676,7 @@ public class CustomerPortal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_bill_gen);
-        jLabel_bill_gen.setBounds(620, 300, 100, 60);
+        jLabel_bill_gen.setBounds(620, 330, 100, 60);
 
         jLabel_go_back_to_main.setBackground(new java.awt.Color(204, 153, 0));
         jLabel_go_back_to_main.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
@@ -702,6 +703,20 @@ public class CustomerPortal extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel_go_back_to_main);
         jLabel_go_back_to_main.setBounds(850, 450, 150, 40);
+
+        jLabel_update.setBackground(new java.awt.Color(51, 255, 51));
+        jLabel_update.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel_update.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_update.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_update.setText("UPDATE >>");
+        jLabel_update.setOpaque(true);
+        jLabel_update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_updateMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel_update);
+        jLabel_update.setBounds(620, 280, 100, 40);
 
         jLabel_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/blue_bg.png"))); // NOI18N
         jLabel_bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -821,6 +836,7 @@ public class CustomerPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_discActionPerformed
 
     private void jComboBox_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoryActionPerformed
+        jTextField_qty.setText("");
         CustomerPortal new_cs= new CustomerPortal();
         ArrayList<Product> myList;
         myList = new_cs.getData(jComboBox_category.getSelectedItem().toString());
@@ -838,6 +854,7 @@ public class CustomerPortal extends javax.swing.JFrame {
 
     private void jTable_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_menuMouseClicked
         try {
+            jTextField_qty.setText("");
             int i = jTable_menu.getSelectedRow();
             TableModel model = jTable_menu.getModel();
             String item = (model.getValueAt(i, 0).toString());
@@ -974,6 +991,8 @@ public class CustomerPortal extends javax.swing.JFrame {
                 setColumnWidth(jTable_selected_item, 1, 64);
                 setColumnWidth(jTable_selected_item, 2, 80);
                 jTable_selected_item.setRowHeight(30);
+                
+                jTextField_qty.setText("");
 
             } else {
                 JOptionPane.showMessageDialog(null,"Please select a row!" ,"Invalid Selection!",1);
@@ -999,7 +1018,11 @@ public class CustomerPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_go_back_to_mainMouseClicked
 
     private void jTable_selected_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_selected_itemMouseClicked
-        
+    try {
+            jTextField_qty.setText(jTable_selected_item.getValueAt(jTable_selected_item.getSelectedRow(), 1).toString());
+        } catch (IndexOutOfBoundsException e) {
+            Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_jTable_selected_itemMouseClicked
 
     private void jLabel_bill_genMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_bill_genMouseClicked
@@ -1240,6 +1263,16 @@ public class CustomerPortal extends javax.swing.JFrame {
         jLabel_go_back_to_main.setBackground(new Color(204,153,0));
     }//GEN-LAST:event_jLabel_go_back_to_mainMouseReleased
 
+    private void jLabel_updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseClicked
+        try {
+            int sel_row = jTable_selected_item.getSelectedRow();
+            
+            
+        } catch (IndexOutOfBoundsException e) {
+            
+        }
+    }//GEN-LAST:event_jLabel_updateMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1290,6 +1323,7 @@ public class CustomerPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_minimize;
     private javax.swing.JLabel jLabel_remove;
     private javax.swing.JLabel jLabel_restxname;
+    private javax.swing.JLabel jLabel_update;
     private javax.swing.JScrollPane jScrollPane_avl_itm;
     private javax.swing.JScrollPane jScrollPane_menu;
     private javax.swing.JScrollPane jScrollPane_selected_item;
