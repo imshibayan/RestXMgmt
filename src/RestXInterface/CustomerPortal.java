@@ -1266,10 +1266,37 @@ public class CustomerPortal extends javax.swing.JFrame {
     private void jLabel_updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_updateMouseClicked
         try {
             int sel_row = jTable_selected_item.getSelectedRow();
+            int target_row_of_avl;
+            int updated_quantity;
+            int prev_qty = Integer.parseInt(jTable_selected_item.getValueAt(sel_row, 1).toString());
+            int curr_qty = Integer.parseInt(jTextField_qty.getText());
             
+//            Getting row number where updated item is present
+            for (target_row_of_avl = 0; target_row_of_avl < jTable_avl_itm.getRowCount(); target_row_of_avl++) {
+                if (jTable_avl_itm.getValueAt(target_row_of_avl, 1).toString().equals(jTable_selected_item.getValueAt(sel_row, 0).toString()))
+                        break;
+            }
+            
+            updated_quantity = Integer.parseInt(jTable_avl_itm.getValueAt(target_row_of_avl, 2).toString()) + prev_qty - curr_qty;
+            
+            if (updated_quantity < 0) {
+                JOptionPane.showMessageDialog(null, "Quantity not available.", "Quantity erro!", 2);
+                return;
+            }
+//            Setting current quantity to Billing Table
+            jTable_selected_item.setValueAt(curr_qty, sel_row, 1);
+            
+//            Setting updated quantity to Available Item Table
+            jTable_avl_itm.setValueAt(updated_quantity, target_row_of_avl, 2);
+            
+            jTextField_qty.setText("");
             
         } catch (IndexOutOfBoundsException e) {
-            
+            Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Please select an item.", "Selection error!", 2);
+        } catch (NumberFormatException c) {
+            Logger.getLogger(CustomerPortal.class.getName()).log(Level.SEVERE, null, c);
+            JOptionPane.showMessageDialog(null, "Please enter valid quantity.", "Quantity error!", 2);
         }
     }//GEN-LAST:event_jLabel_updateMouseClicked
 
