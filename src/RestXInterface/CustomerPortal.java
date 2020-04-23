@@ -291,10 +291,10 @@ public class CustomerPortal extends javax.swing.JFrame {
     
     public class BillData {
         String item;
-        int qty;
-        float price;
+        String qty;
+        String price;
         
-        public BillData(String item, int qty, float price) {
+        public BillData(String item, String qty, String price) {
             this.item = item;
             this.qty = qty;
             this.price = price;
@@ -306,31 +306,33 @@ public class CustomerPortal extends javax.swing.JFrame {
         String getItem() {
             return item;
         }
-        void setQty(int qty) {
+        void setQty(String qty) {
             this.qty = qty;
         }
-        int getQty() {
+        String getQty() {
             return qty;
         }
-        void setPrice(float price) {
+        void setPrice(String price) {
             this.price = price;
         }
-        float getPrice() {
+        String getPrice() {
             return price;
         }
     }
     
     public ArrayList<BillData> getAllBilling() {
-        ArrayList<BillData> new_bill = new ArrayList<>();
+        ArrayList<BillData> new_bill_ar = new ArrayList<>();
+        BillData new_bill;
         int total_row = jTable_selected_item.getRowCount();
         if (total_row>0) {
             for (int i = 0; i < total_row; i++) {
-                new_bill.get(i).setItem(jTable_selected_item.getValueAt(i, 0).toString());
-                new_bill.get(i).setQty(Integer.parseInt(jTable_selected_item.getValueAt(i, 1).toString()));
-                new_bill.get(i).setPrice(Float.parseFloat(jTable_selected_item.getValueAt(i, 2).toString()));
+                new_bill = new BillData(jTable_selected_item.getValueAt(i, 0).toString(),
+                jTable_selected_item.getValueAt(i, 1).toString(),
+                jTable_selected_item.getValueAt(i, 2).toString());
+                new_bill_ar.add(new_bill);
             }
         }
-        return new_bill;
+        return new_bill_ar;
     }
     
     
@@ -1046,22 +1048,30 @@ public class CustomerPortal extends javax.swing.JFrame {
                     }
 //                    p_st.close();
                     
-//                    // Adding billing datas to the databases
-//                    PreparedStatement p_st_bill;
-//                    ArrayList<BillData> new_bill = new ArrayList<>();
-//                    new_bill = getAllBilling();
-//                        for (int j = 0; j < no_rows_selected_table; j++) {
-//                            String query_bill = "INSERT INTO `billing_details` (`item`, `quantity`,"
-//                                    + "`price`, `date_time`, `total_price`) VALUES ('"
-//                                    + new_bill.get(j).getItem() + "', '"
-//                                    + new_bill.get(j).getQty() + "', '" 
-//                                    + new_bill.get(j).getPrice() + "', '"
-//                                    + dateTime() + "', '" 
-//                                    + jTextField_total.getText() + "')";
-//                            
-//                            p_st_bill = DBConnect.DBConnect.getConnection().prepareStatement(query_bill);
-//                            p_st_bill.executeUpdate();
-//                        }
+                    // Adding billing datas to the databases
+                    PreparedStatement p_st_bill;
+                    ArrayList<BillData> new_bill = getAllBilling();
+                    String all_item = "", all_qty = "", all_price = "";
+                    all_item = new_bill.get(0).getItem();
+                    all_qty = new_bill.get(0).getQty();
+                    all_price = new_bill.get(0).getPrice();
+                    if (no_rows_selected_table > 1) {
+                        for (int j = 1; j < no_rows_selected_table; j++) {
+                            // setting whole string to insert into database
+                            all_item += "\n" + new_bill.get(j).getItem();
+                            all_qty += "\n" + new_bill.get(j).getQty();
+                            all_price += "\n" + new_bill.get(j).getPrice();
+                        }
+                    }
+                    String query_bill = "INSERT INTO `billing_details` (`item`, `quantity`,"
+                                    + "`price`, `date_time`, `total_price`) VALUES ('"
+                                    + all_item + "', '"
+                                    + all_qty + "', '" 
+                                    + all_price + "', '"
+                                    + dateTime() + "', '" 
+                                    + jTextField_total.getText() + "')";
+                    p_st_bill = DBConnect.DBConnect.getConnection().prepareStatement(query_bill);
+                    p_st_bill.executeUpdate();
                     
                     
                     ((DefaultTableModel)jTable_selected_item.getModel()).setRowCount(0);
