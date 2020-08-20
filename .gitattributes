@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 Replacable/ filter=lfs diff=lfs merge=lfs -text
 *.l filter=lfs diff=lfs merge=lfs -text
 **/Replacable filter=lfs diff=lfs merge=lfs -text
 Replacable/Java/jdk-11.0.6/lib/modules filter=lfs diff=lfs merge=lfs -text
 Replacable/* filter=lfs diff=lfs merge=lfs -text
+=======
+Replacable/ filter=lfs diff=lfs merge=lfs -text
+Replacable/Java filter=lfs diff=lfs merge=lfs -text
+Replacable/README.txt filter=lfs diff=lfs merge=lfs -text
+>>>>>>> 3b5456b980ecd4d88022c3203155ad32a72e4945
