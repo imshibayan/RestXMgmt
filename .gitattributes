@@ -1,2 +1,2 @@
-*.psd filter=lfs diff=lfs merge=lfs -text
+C:/Users/shibayanmondal/Documents/NetBeansProjects/RestXMgmt/Replacable/Java/ filter=lfs diff=lfs merge=lfs -text
 **/Replacable filter=lfs diff=lfs merge=lfs -text
