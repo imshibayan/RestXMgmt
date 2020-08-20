@@ -1,0 +1,154 @@
+11:04:08 AM  [main] 	Initializing Control Panel
+11:04:08 AM  [main] 	Windows Version:  Home  64-bit
+11:04:08 AM  [main] 	XAMPP Version: 7.4.4
+11:04:08 AM  [main] 	Control Panel Version: 3.2.4  [ Compiled: Jun 5th 2019 ]
+11:04:08 AM  [main] 	Running with Administrator rights - good!
+11:04:08 AM  [main] 	XAMPP Installation Directory: "c:\xampp\"
+11:04:08 AM  [main] 	Checking for prerequisites
+11:04:08 AM  [main] 	All prerequisites found
+11:04:08 AM  [main] 	Initializing Modules
+11:04:08 AM  [main] 	Starting Check-Timer
+11:04:08 AM  [main] 	Control Panel Ready
+11:04:11 AM  [main] 	Deinitializing Modules
+11:04:11 AM  [main] 	Deinitializing Control Panel
+
+11:04:20 AM  [main] 	Initializing Control Panel
+11:04:20 AM  [main] 	Windows Version:  Home  64-bit
+11:04:20 AM  [main] 	XAMPP Version: 7.4.4
+11:04:20 AM  [main] 	Control Panel Version: 3.2.4  [ Compiled: Jun 5th 2019 ]
+11:04:20 AM  [main] 	Running with Administrator rights - good!
+11:04:20 AM  [main] 	XAMPP Installation Directory: "c:\xampp\"
+11:04:20 AM  [main] 	Checking for prerequisites
+11:04:20 AM  [main] 	All prerequisites found
+11:04:20 AM  [main] 	Initializing Modules
+11:04:20 AM  [main] 	Starting Check-Timer
+11:04:20 AM  [main] 	Control Panel Ready
+11:04:25 AM  [Apache] 	Installing service...
+11:04:25 AM  [Apache] 	Successful!
+11:04:28 AM  [mysql] 	Installing service...
+11:04:28 AM  [mysql] 	Successful!
+11:04:30 AM  [Apache] 	Attempting to start Apache service...
+11:04:31 AM  [Apache] 	Status change detected: running
+11:04:45 AM  [mysql] 	Attempting to start MySQL service...
+11:04:46 AM  [mysql] 	Status change detected: running
+11:04:55 AM  [mysql] 	Attempting to stop MySQL service...
+11:04:56 AM  [mysql] 	Status change detected: stopped
+11:04:59 AM  [main] 	Deinitializing Modules
+11:04:59 AM  [main] 	Deinitializing Control Panel
+
+11:05:03 AM  [main] 	Initializing Control Panel
+11:05:03 AM  [main] 	Windows Version:  Home  64-bit
+11:05:03 AM  [main] 	XAMPP Version: 7.4.4
+11:05:03 AM  [main] 	Control Panel Version: 3.2.4  [ Compiled: Jun 5th 2019 ]
+11:05:03 AM  [main] 	Running with Administrator rights - good!
+11:05:03 AM  [main] 	XAMPP Installation Directory: "c:\xampp\"
+11:05:03 AM  [main] 	Checking for prerequisites
+11:05:03 AM  [main] 	All prerequisites found
+11:05:03 AM  [main] 	Initializing Modules
+11:05:03 AM  [Apache] 	XAMPP Apache Service is already running on port 80
+11:05:03 AM  [Apache] 	XAMPP Apache Service is already running on port 443
+11:05:03 AM  [main] 	Starting Check-Timer
+11:05:03 AM  [main] 	Control Panel Ready
+11:05:04 AM  [Apache] 	Attempting to stop Apache service...
+11:05:10 AM  [Apache] 	Status change detected: stopped
+11:05:12 AM  [Apache] 	Attempting to start Apache service...
+11:05:13 AM  [Apache] 	Status change detected: running
+11:05:16 AM  [mysql] 	Attempting to start MySQL service...
+11:05:16 AM  [mysql] 	Status change detected: running
+1:14:33 PM  [mysql] 	Attempting to stop MySQL service...
+1:14:35 PM  [mysql] 	Status change detected: stopped
+1:14:41 PM  [mysql] 	Attempting to start MySQL service...
+1:14:41 PM  [mysql] 	Status change detected: running
+1:17:25 PM  [mysql] 	Attempting to stop MySQL service...
+1:17:27 PM  [mysql] 	Status change detected: stopped
+1:18:05 PM  [mysql] 	Attempting to start MySQL service...
+1:18:06 PM  [mysql] 	Status change detected: running
+2:09:32 PM  [mysql] 	Attempting to stop MySQL service...
+2:09:33 PM  [mysql] 	Status change detected: stopped
+2:09:46 PM  [mysql] 	Attempting to start MySQL service...
+2:09:46 PM  [mysql] 	Status change detected: running
+2:10:03 PM  [mysql] 	Attempting to stop MySQL service...
+2:10:04 PM  [mysql] 	Status change detected: stopped
+2:10:41 PM  [mysql] 	Attempting to start MySQL service...
+2:10:42 PM  [mysql] 	Status change detected: running
+2:10:55 PM  [mysql] 	Attempting to stop MySQL service...
+2:10:56 PM  [mysql] 	Status change detected: stopped
+2:12:44 PM  [main] 	Executing "c:\xampp\mysql\data"
+2:14:50 PM  [main] 	Executing "c:\xampp\mysql"
+2:18:14 PM  [mysql] 	Attempting to start MySQL service...
+2:18:15 PM  [mysql] 	Status change detected: running
+2:22:45 PM  [mysql] 	Attempting to stop MySQL service...
+2:22:46 PM  [mysql] 	Status change detected: stopped
+2:22:47 PM  [mysql] 	Attempting to start MySQL service...
+2:22:48 PM  [mysql] 	Status change detected: running
+2:26:45 PM  [mysql] 	Attempting to stop MySQL service...
+2:26:46 PM  [mysql] 	Status change detected: stopped
+2:26:48 PM  [mysql] 	Attempting to start MySQL service...
+2:26:49 PM  [mysql] 	Status change detected: running
+2:27:39 PM  [mysql] 	Attempting to stop MySQL service...
+2:27:40 PM  [mysql] 	Status change detected: stopped
+2:27:41 PM  [mysql] 	Attempting to start MySQL service...
+2:27:41 PM  [mysql] 	Status change detected: running
+2:28:16 PM  [mysql] 	Attempting to stop MySQL service...
+2:28:17 PM  [mysql] 	Status change detected: stopped
+2:28:17 PM  [mysql] 	Attempting to start MySQL service...
+2:28:18 PM  [mysql] 	Status change detected: running
+2:58:24 PM  [mysql] 	Attempting to stop MySQL service...
+2:58:25 PM  [mysql] 	Status change detected: stopped
+2:58:42 PM  [mysql] 	Attempting to start MySQL service...
+2:58:43 PM  [mysql] 	Status change detected: running
+3:08:24 PM  [mysql] 	Attempting to stop MySQL service...
+3:08:26 PM  [mysql] 	Status change detected: stopped
+3:08:27 PM  [mysql] 	Attempting to start MySQL service...
+3:08:27 PM  [mysql] 	Status change detected: running
+3:08:34 PM  [mysql] 	Status change detected: stopped
+3:08:34 PM  [mysql] 	Error: MySQL shutdown unexpectedly.
+3:08:34 PM  [mysql] 	This may be due to a blocked port, missing dependencies, 
+3:08:34 PM  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+3:08:34 PM  [mysql] 	Press the Logs button to view error logs and check
+3:08:34 PM  [mysql] 	the Windows Event Viewer for more clues
+3:08:34 PM  [mysql] 	If you need more help, copy and post this
+3:08:34 PM  [mysql] 	entire log window on the forums
+3:09:03 PM  [mysql] 	Attempting to start MySQL service...
+3:09:04 PM  [mysql] 	Status change detected: running
+3:09:10 PM  [mysql] 	Status change detected: stopped
+3:09:10 PM  [mysql] 	Error: MySQL shutdown unexpectedly.
+3:09:10 PM  [mysql] 	This may be due to a blocked port, missing dependencies, 
+3:09:10 PM  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+3:09:10 PM  [mysql] 	Press the Logs button to view error logs and check
+3:09:10 PM  [mysql] 	the Windows Event Viewer for more clues
+3:09:10 PM  [mysql] 	If you need more help, copy and post this
+3:09:10 PM  [mysql] 	entire log window on the forums
+3:09:28 PM  [mysql] 	Attempting to start MySQL service...
+3:09:29 PM  [mysql] 	Status change detected: running
+3:09:35 PM  [mysql] 	Status change detected: stopped
+3:09:35 PM  [mysql] 	Error: MySQL shutdown unexpectedly.
+3:09:35 PM  [mysql] 	This may be due to a blocked port, missing dependencies, 
+3:09:35 PM  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+3:09:35 PM  [mysql] 	Press the Logs button to view error logs and check
+3:09:35 PM  [mysql] 	the Windows Event Viewer for more clues
+3:09:35 PM  [mysql] 	If you need more help, copy and post this
+3:09:35 PM  [mysql] 	entire log window on the forums
+3:11:12 PM  [mysql] 	Attempting to start MySQL service...
+3:11:12 PM  [mysql] 	Status change detected: running
+3:11:19 PM  [mysql] 	Status change detected: stopped
+3:11:19 PM  [mysql] 	Error: MySQL shutdown unexpectedly.
+3:11:19 PM  [mysql] 	This may be due to a blocked port, missing dependencies, 
+3:11:19 PM  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+3:11:19 PM  [mysql] 	Press the Logs button to view error logs and check
+3:11:19 PM  [mysql] 	the Windows Event Viewer for more clues
+3:11:19 PM  [mysql] 	If you need more help, copy and post this
+3:11:19 PM  [mysql] 	entire log window on the forums
+3:11:46 PM  [mysql] 	Attempting to start MySQL service...
+3:11:47 PM  [mysql] 	Status change detected: running
+3:15:52 PM  [mysql] 	Attempting to stop MySQL service...
+3:15:52 PM  [mysql] 	Status change detected: stopped
+3:15:56 PM  [mysql] 	Attempting to start MySQL service...
+3:15:56 PM  [mysql] 	Status change detected: running
+5:01:46 PM  [Apache] 	Attempting to stop Apache service...
+5:01:52 PM  [Apache] 	Status change detected: stopped
+5:01:56 PM  [mysql] 	Attempting to stop MySQL service...
+5:01:57 PM  [mysql] 	Status change detected: stopped
+5:01:58 PM  [main] 	Deinitializing Modules
+5:01:58 PM  [main] 	Deinitializing Control Panel
+

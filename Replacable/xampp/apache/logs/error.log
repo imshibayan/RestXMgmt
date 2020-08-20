@@ -1,0 +1,62 @@
+[Mon Apr 13 10:47:23.415621 2020] [ssl:warn] [pid 5880:tid 628] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 10:47:23.457737 2020] [ssl:warn] [pid 5880:tid 628] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: \\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), \\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 10:47:24.147171 2020] [mpm_winnt:notice] [pid 5880:tid 628] AH00455: Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.4 configured -- resuming normal operations
+[Mon Apr 13 10:47:24.147171 2020] [mpm_winnt:notice] [pid 5880:tid 628] AH00456: Apache Lounge VC15 Server built: Aug 11 2019 12:20:04
+[Mon Apr 13 10:47:24.147171 2020] [core:notice] [pid 5880:tid 628] AH00094: Command line: 'C:\\xampp\\apache\\bin\\httpd.exe -d C:/xampp/apache'
+[Mon Apr 13 10:47:24.163129 2020] [mpm_winnt:notice] [pid 5880:tid 628] AH00418: Parent: Created child process 9708
+[Mon Apr 13 10:47:24.510607 2020] [ssl:warn] [pid 9708:tid 640] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 10:47:24.551374 2020] [ssl:warn] [pid 9708:tid 640] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: \\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), \\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 10:47:24.576883 2020] [mpm_winnt:notice] [pid 9708:tid 640] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 13 11:04:30.849882 2020] [ssl:warn] [pid 7732:tid 700] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 11:04:30.896747 2020] [ssl:warn] [pid 7732:tid 700] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 11:04:30.912368 2020] [mpm_winnt:notice] [pid 7732:tid 700] AH00455: Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.4 configured -- resuming normal operations
+[Mon Apr 13 11:04:30.912368 2020] [mpm_winnt:notice] [pid 7732:tid 700] AH00456: Apache Lounge VC15 Server built: Aug 11 2019 12:20:04
+[Mon Apr 13 11:04:30.912368 2020] [core:notice] [pid 7732:tid 700] AH00094: Command line: 'C:\\xampp\\apache\\bin\\httpd.exe -d C:/xampp/apache'
+[Mon Apr 13 11:04:30.927989 2020] [mpm_winnt:notice] [pid 7732:tid 700] AH00418: Parent: Created child process 9892
+[Mon Apr 13 11:04:31.176163 2020] [ssl:warn] [pid 9892:tid 632] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 11:04:31.211051 2020] [ssl:warn] [pid 9892:tid 632] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 11:04:31.235014 2020] [mpm_winnt:notice] [pid 9892:tid 632] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 13 11:05:05.074468 2020] [mpm_winnt:notice] [pid 7732:tid 700] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Apr 13 11:05:07.077558 2020] [mpm_winnt:notice] [pid 9892:tid 632] AH00364: Child: All worker threads have exited.
+[Mon Apr 13 11:05:10.336696 2020] [mpm_winnt:notice] [pid 7732:tid 700] AH00430: Parent: Child process 9892 exited successfully.
+[Mon Apr 13 11:05:13.235341 2020] [ssl:warn] [pid 2336:tid 700] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 11:05:13.282206 2020] [ssl:warn] [pid 2336:tid 700] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 11:05:13.304338 2020] [mpm_winnt:notice] [pid 2336:tid 700] AH00455: Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.4 configured -- resuming normal operations
+[Mon Apr 13 11:05:13.304338 2020] [mpm_winnt:notice] [pid 2336:tid 700] AH00456: Apache Lounge VC15 Server built: Aug 11 2019 12:20:04
+[Mon Apr 13 11:05:13.304338 2020] [core:notice] [pid 2336:tid 700] AH00094: Command line: 'C:\\xampp\\apache\\bin\\httpd.exe -d C:/xampp/apache'
+[Mon Apr 13 11:05:13.319962 2020] [mpm_winnt:notice] [pid 2336:tid 700] AH00418: Parent: Created child process 6168
+[Mon Apr 13 11:05:13.555962 2020] [ssl:warn] [pid 6168:tid 632] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 11:05:13.604835 2020] [ssl:warn] [pid 6168:tid 632] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 11:05:13.620459 2020] [mpm_winnt:notice] [pid 6168:tid 632] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 13 17:01:47.062889 2020] [mpm_winnt:notice] [pid 2336:tid 700] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Apr 13 17:01:49.103142 2020] [mpm_winnt:notice] [pid 6168:tid 632] AH00364: Child: All worker threads have exited.
+[Mon Apr 13 17:01:52.208397 2020] [mpm_winnt:notice] [pid 2336:tid 700] AH00430: Parent: Child process 6168 exited successfully.
+[Mon Apr 13 17:17:12.776590 2020] [ssl:warn] [pid 16212:tid 700] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 17:17:12.814799 2020] [ssl:warn] [pid 16212:tid 700] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 17:17:12.854729 2020] [mpm_winnt:notice] [pid 16212:tid 700] AH00455: Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.4 configured -- resuming normal operations
+[Mon Apr 13 17:17:12.854729 2020] [mpm_winnt:notice] [pid 16212:tid 700] AH00456: Apache Lounge VC15 Server built: Aug 11 2019 12:20:04
+[Mon Apr 13 17:17:12.854729 2020] [core:notice] [pid 16212:tid 700] AH00094: Command line: 'C:\\xampp\\apache\\bin\\httpd.exe -d C:/xampp/apache'
+[Mon Apr 13 17:17:12.855757 2020] [mpm_winnt:notice] [pid 16212:tid 700] AH00418: Parent: Created child process 7532
+[Mon Apr 13 17:17:13.092035 2020] [ssl:warn] [pid 7532:tid 632] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 13 17:17:13.129621 2020] [ssl:warn] [pid 7532:tid 632] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Mon Apr 13 17:17:13.153642 2020] [mpm_winnt:notice] [pid 7532:tid 632] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 14 08:18:44.284516 2020] [ssl:warn] [pid 3104:tid 708] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 14 08:18:44.456351 2020] [core:warn] [pid 3104:tid 708] AH00098: pid file C:/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 14 08:18:44.456351 2020] [ssl:warn] [pid 3104:tid 708] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Tue Apr 14 08:18:44.596943 2020] [mpm_winnt:notice] [pid 3104:tid 708] AH00455: Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.4 configured -- resuming normal operations
+[Tue Apr 14 08:18:44.596943 2020] [mpm_winnt:notice] [pid 3104:tid 708] AH00456: Apache Lounge VC15 Server built: Aug 11 2019 12:20:04
+[Tue Apr 14 08:18:44.596943 2020] [core:notice] [pid 3104:tid 708] AH00094: Command line: 'C:\\xampp\\apache\\bin\\httpd.exe -d C:/xampp/apache'
+[Tue Apr 14 08:18:44.612564 2020] [mpm_winnt:notice] [pid 3104:tid 708] AH00418: Parent: Created child process 5436
+[Tue Apr 14 08:18:44.956233 2020] [ssl:warn] [pid 5436:tid 540] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 14 08:18:44.971854 2020] [ssl:warn] [pid 5436:tid 540] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: C:\\xampp\\php\\ext\\pdo_sqlite (The specified module could not be found.), C:\\xampp\\php\\ext\\php_pdo_sqlite.dll (The specified module could not be found.)) in Unknown on line 0
+[Tue Apr 14 08:18:45.003097 2020] [mpm_winnt:notice] [pid 5436:tid 540] AH00354: Child: Starting 150 worker threads.

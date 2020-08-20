@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module codename="net.sf.jasperreports.engine">
+    <module_version install_time="1586982663178" last="true" origin="jasperreports-6.7.0.jar" specification_version="6.6.0">
+        <file crc="2636443096" name="modules/net-sf-jasperreports-engine.jar"/>
+    </module_version>
+</module>
